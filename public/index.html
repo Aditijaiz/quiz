@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node.js Quiz</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Node.js Quiz</h1>
+    <form id="quizForm">
+        <div id="questionsContainer"></div>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        // Fetch questions and render them here
+        fetch('/quiz/questions')
+            .then(response => response.json())
+            .then(questions => {
+                const questionsContainer = document.getElementById('questionsContainer');
+
+                questions.forEach(question => {
+                    const questionDiv = document.createElement('div');
+                    questionDiv.innerHTML = `
+                        <p>${question.question}</p>
+                        <label>
+                            <input type="radio" name="answer_${question.id}" value="option1">
+                            ${question.options[0]}
+                        </label>
+                        <label>
+                            <input type="radio" name="answer_${question.id}" value="option2">
+                            ${question.options[1]}
+                        </label>
+                        <label>
+                            <input type="radio" name="answer_${question.id}" value="option3">
+                            ${question.options[2]}
+                        </label>
+                    `;
+                    questionsContainer.appendChild(questionDiv);
+                });
+            })
+            .catch(error => console.error('Error fetching questions:', error));
+
+        // Handle form submission and display results
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const answers = {};
+
+            for (const [key, value] of formData.entries()) {
+                const questionId = key.split('_')[1];
+                answers[questionId] = value;
+            }
+
+            fetch('/quiz/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(answers)
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = `<p>Your score: ${data.score}</p>`;
+
+                data.result.forEach(result => {
+                    const feedback = document.createElement('p');
+                    if (result.correct) {
+                        feedback.textContent = `Question ${result.id}: Correct!`;
+                    } else {
+                        feedback.textContent = `Question ${result.id}: Incorrect. Correct answer: ${result.correctAnswer}`;
+                    }
+                    resultDiv.appendChild(feedback);
+                });
+            })
+            .catch(error => console.error('Error submitting answers:', error));
+        });
+    </script>
+</body>
+</html>

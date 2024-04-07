@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the primary database query language used with MongoDB?",
+        "options": ["MongoDBQL", "NoSQL", "SQL", "BSON"],
+        "correctAnswer": "NoSQL"
+    },
+    {
+        "question": "What is the event-driven programming paradigm used in Node.js?",
+        "options": ["Asynchronous programming", "Synchronous programming", "Parallel programming", "Multithreading"],
+        "correctAnswer": "Asynchronous programming"
+      },
+      {
+        "question": "Which core module in Node.js is used for handling file I/O operations?",
+        "options": ["http", "fs", "path", "os"],
+        "correctAnswer": "fs"
+      },
+      {
+        "question": "What does npm stand for?",
+        "options": ["Node Package Manager", "Node Project Manager", "Node Package Module", "Node Plugin Manager"],
+        "correctAnswer": "Node Package Manager"
+      },
+    {
+        "question": "Which HTTP method is typically used for retrieving data from a server in RESTful APIs?",
+        "options": ["POST", "GET", "PUT", "DELETE"],
+        "correctAnswer": "GET"
+    },
+    {
+        "question": "In JavaScript, what does the typeof operator return when applied to a variable that hasn't been declared?",
+        "options": ["\"undefined\"", "\"null\"", "\"NaN\"", "\"error\""],
+        "correctAnswer": "\"undefined\""
+    },
+    {
+        "question": "What does CSS stand for?",
+        "options": ["Cascading Style Sheet", "Creative Style Selector", "Customizable Style Structure", "Computerized Style Syntax"],
+        "correctAnswer": "Cascading Style Sheet"
+    },
+    {
+        "question": "Which of the following is NOT a valid primitive data type in JavaScript?",
+        "options": ["string", "number", "boolean", "array"],
+        "correctAnswer": "array"
+    },
+    {
+        "question": "What does API stand for?",
+        "options": ["Application Programming Interface", "Advanced Programming Instruction", "Application Protocol Interface", "Algorithmic Programming Interface"],
+        "correctAnswer": "Application Programming Interface"
+    },
+    {
+        "question": "In React, which method is called after a component is rendered for the first time?",
+        "options": ["componentDidUpdate", "componentDidMount", "componentWillMount", "componentWillRender"],
+        "correctAnswer": "componentDidMount"
+    }
+]
